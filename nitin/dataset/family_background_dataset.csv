@@ -1,0 +1,210 @@
+student_id,parental_income,parents_education_level,family_type,no_of_siblings,guardian_type,home_study_environment,residential_status,domestic_issues_reported,stress_level
+S0001,63131.65,Graduate,Nuclear,0,Parents,Noisy,Hostel,0,Stress
+S0002,70091.39,Graduate,Joint,2,Parents,Quiet,PG,0,Normal
+S0003,70922.55,Graduate,Joint,0,Parents,Quiet,Home,0,Normal
+S0004,58125.49,High School,Joint,0,Single Parent,Shared Room,PG,1,Stress
+S0005,55360.94,High School,Joint,1,Parents,Quiet,Hostel,0,Normal
+S0006,48887.9,Graduate,Nuclear,2,Parents,Quiet,Home,0,Normal
+S0007,51675.42,Graduate,Nuclear,0,Parents,Quiet,Home,0,Normal
+S0008,31732.21,Postgrad,Nuclear,2,Parents,Shared Room,Home,1,Stress
+S0009,27727.02,Postgrad,Nuclear,2,Parents,Noisy,Home,0,Stress
+S0010,39949.38,Graduate,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0011,37447.23,Graduate,Joint,1,Parents,Shared Room,Home,0,Stress
+S0012,33201.58,Graduate,Nuclear,1,Parents,Shared Room,Hostel,1,Stress
+S0013,50445.81,High School,Nuclear,1,Parents,Quiet,Home,1,Stress
+S0014,54329.58,Postgrad,Nuclear,3,Parents,Noisy,PG,0,Stress
+S0015,41326.1,Graduate,Nuclear,3,Parents,Noisy,Hostel,0,Stress
+S0016,62162.95,Graduate,Nuclear,1,Parents,Noisy,PG,0,Stress
+S0017,22874.66,High School,Joint,3,Others,Quiet,Hostel,0,Stress
+S0018,37095.11,Graduate,Nuclear,3,Parents,Shared Room,Home,1,Stress
+S0019,29247.67,Graduate,Nuclear,3,Parents,Noisy,PG,0,Stress
+S0020,12001.95,Postgrad,Nuclear,1,Parents,Quiet,Hostel,1,Stress
+S0021,38759.79,Graduate,Nuclear,1,Single Parent,Quiet,Hostel,0,Stress
+S0022,38173.79,Graduate,Nuclear,1,Single Parent,Quiet,Home,0,Stress
+S0023,62701.75,Postgrad,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0024,49462.18,High School,Nuclear,1,Others,Noisy,Home,0,Stress
+S0025,24637.2,Graduate,Nuclear,3,Parents,Quiet,PG,0,Stress
+S0026,67811.39,High School,Nuclear,0,Parents,Quiet,Home,0,Normal
+S0027,58315.51,Graduate,Nuclear,3,Single Parent,Noisy,Hostel,1,Stress
+S0028,48731.47,Postgrad,Nuclear,2,Single Parent,Quiet,Home,0,Stress
+S0029,36602.74,High School,Nuclear,1,Parents,Shared Room,Home,0,Stress
+S0030,25608.41,Postgrad,Nuclear,1,Parents,Quiet,Hostel,1,Stress
+S0031,34416.9,High School,Joint,2,Parents,Quiet,Home,0,Normal
+S0032,56331.23,Postgrad,Nuclear,3,Parents,Quiet,Home,0,Normal
+S0033,68268.79,Graduate,Nuclear,0,Single Parent,Quiet,Home,0,Stress
+S0034,63148.65,Postgrad,Nuclear,2,Parents,Quiet,Hostel,0,Normal
+S0035,32667.26,High School,Nuclear,2,Parents,Noisy,Home,0,Stress
+S0036,23205.74,Postgrad,Nuclear,3,Parents,Shared Room,Hostel,1,Stress
+S0037,42113.29,Graduate,Nuclear,1,Parents,Quiet,Hostel,1,Stress
+S0038,13473.41,Graduate,Joint,3,Parents,Noisy,PG,0,Stress
+S0039,44847.52,Postgrad,Nuclear,2,Parents,Noisy,Home,0,Stress
+S0040,37785.96,High School,Nuclear,2,Others,Shared Room,Hostel,1,Stress
+S0041,33009.45,Postgrad,Nuclear,1,Single Parent,Quiet,Hostel,0,Stress
+S0042,16079.45,High School,Nuclear,1,Parents,Quiet,Hostel,0,Stress
+S0043,47704.0,Graduate,Nuclear,1,Single Parent,Quiet,Hostel,0,Stress
+S0044,32009.49,Graduate,Nuclear,3,Single Parent,Noisy,Hostel,1,Stress
+S0045,22451.25,High School,Joint,1,Single Parent,Shared Room,Hostel,0,Stress
+S0046,-3083.93,High School,Nuclear,2,Parents,Quiet,Home,0,Stress
+S0047,39587.28,High School,Nuclear,2,Parents,Quiet,Home,0,Normal
+S0048,66583.77,Graduate,Joint,0,Parents,Shared Room,Home,0,Stress
+S0049,64918.89,Graduate,Nuclear,3,Parents,Shared Room,Home,0,Stress
+S0050,33143.56,Graduate,Joint,0,Parents,Shared Room,Hostel,0,Stress
+S0051,30966.82,High School,Nuclear,2,Parents,Noisy,PG,1,Stress
+S0052,47031.61,High School,Joint,0,Parents,Quiet,PG,0,Normal
+S0053,25024.22,Graduate,Nuclear,2,Parents,Noisy,PG,0,Stress
+S0054,44526.88,High School,Joint,0,Parents,Noisy,PG,0,Stress
+S0055,51491.2,Postgrad,Joint,1,Parents,Quiet,PG,1,Stress
+S0056,58404.0,Postgrad,Nuclear,0,Others,Noisy,Home,1,Stress
+S0057,38497.69,Graduate,Joint,1,Single Parent,Noisy,Hostel,0,Stress
+S0058,36944.89,Graduate,Nuclear,1,Single Parent,Quiet,Home,0,Stress
+S0059,26830.26,Postgrad,Nuclear,3,Others,Noisy,Home,0,Stress
+S0060,27596.79,High School,Nuclear,1,Parents,Noisy,Home,0,Stress
+S0061,36602.82,High School,Nuclear,1,Others,Shared Room,Home,0,Stress
+S0062,45510.48,High School,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0063,53703.77,Graduate,Nuclear,2,Parents,Quiet,Hostel,0,Normal
+S0064,27952.32,High School,Nuclear,3,Parents,Noisy,PG,0,Stress
+S0065,62390.33,Graduate,Joint,1,Parents,Quiet,Home,0,Normal
+S0066,35933.15,Postgrad,Joint,3,Parents,Noisy,Home,1,Stress
+S0067,39679.49,Postgrad,Nuclear,0,Parents,Noisy,Hostel,0,Stress
+S0068,28791.82,Graduate,Nuclear,1,Single Parent,Quiet,Hostel,0,Stress
+S0069,3636.4,High School,Nuclear,0,Parents,Noisy,PG,0,Stress
+S0070,53260.68,Postgrad,Nuclear,3,Parents,Noisy,Home,1,Stress
+S0071,51052.66,Graduate,Nuclear,0,Single Parent,Quiet,Home,0,Stress
+S0072,35780.09,High School,Nuclear,3,Parents,Shared Room,Home,1,Stress
+S0073,41004.86,High School,Nuclear,0,Parents,Shared Room,Home,1,Stress
+S0074,47739.09,Postgrad,Joint,3,Parents,Noisy,Hostel,0,Stress
+S0075,16561.81,Graduate,Nuclear,2,Parents,Noisy,Home,0,Stress
+S0076,32064.21,Postgrad,Nuclear,0,Parents,Quiet,Home,0,Normal
+S0077,51913.97,Postgrad,Nuclear,0,Single Parent,Shared Room,Home,1,Stress
+S0078,21185.66,Graduate,Nuclear,2,Parents,Noisy,Home,1,Stress
+S0079,44403.37,Graduate,Nuclear,2,Parents,Noisy,PG,0,Stress
+S0080,19651.27,Graduate,Nuclear,0,Single Parent,Shared Room,Hostel,0,Stress
+S0081,46996.45,Graduate,Nuclear,2,Parents,Quiet,PG,0,Normal
+S0082,39465.38,Graduate,Nuclear,1,Parents,Shared Room,Hostel,0,Stress
+S0083,15773.02,Graduate,Joint,3,Parents,Quiet,Home,0,Stress
+S0084,57471.09,Graduate,Joint,3,Parents,Quiet,Hostel,0,Normal
+S0085,28981.13,Postgrad,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0086,27846.21,Graduate,Nuclear,1,Parents,Shared Room,Home,0,Stress
+S0087,43008.54,Graduate,Nuclear,2,Parents,Shared Room,Hostel,0,Stress
+S0088,57229.56,Graduate,Nuclear,2,Others,Noisy,Home,0,Stress
+S0089,24762.67,Graduate,Nuclear,0,Parents,Noisy,PG,0,Stress
+S0090,40925.2,Graduate,Nuclear,2,Parents,Noisy,Hostel,0,Stress
+S0091,46432.25,High School,Nuclear,0,Parents,Shared Room,Home,1,Stress
+S0092,50396.58,Graduate,Nuclear,1,Parents,Quiet,Home,0,Normal
+S0093,42646.62,High School,Nuclear,3,Parents,Quiet,Home,1,Stress
+S0094,34494.58,Graduate,Joint,3,Parents,Quiet,Hostel,0,Normal
+S0095,27586.15,Graduate,Joint,3,Single Parent,Noisy,Hostel,0,Stress
+S0096,41292.16,Graduate,Joint,2,Parents,Noisy,Hostel,0,Stress
+S0097,23917.91,Postgrad,Nuclear,0,Parents,Quiet,Hostel,0,Stress
+S0098,-3820.26,Graduate,Joint,0,Parents,Quiet,Hostel,0,Stress
+S0099,46548.4,Graduate,Nuclear,1,Parents,Shared Room,Home,0,Stress
+S0100,53559.02,Graduate,Joint,2,Parents,Quiet,PG,1,Stress
+S0101,4556.01,Graduate,Nuclear,1,Parents,Noisy,PG,1,Stress
+S0102,24854.04,High School,Joint,0,Parents,Shared Room,Home,0,Stress
+S0103,49287.31,High School,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0104,70862.43,Graduate,Joint,3,Single Parent,Quiet,Hostel,0,Stress
+S0105,40311.91,Graduate,Joint,2,Others,Noisy,Hostel,1,Stress
+S0106,29079.96,High School,Nuclear,0,Single Parent,Shared Room,Hostel,0,Stress
+S0107,37256.55,High School,Nuclear,3,Single Parent,Noisy,Home,1,Stress
+S0108,60623.15,High School,Joint,2,Parents,Shared Room,Home,0,Stress
+S0109,30310.54,Postgrad,Nuclear,1,Others,Quiet,Hostel,1,Stress
+S0110,28012.12,Graduate,Joint,2,Parents,Noisy,Hostel,0,Stress
+S0111,32758.85,Graduate,Nuclear,2,Others,Noisy,PG,1,Stress
+S0112,25700.07,High School,Nuclear,0,Others,Shared Room,Home,0,Stress
+S0113,41840.05,Graduate,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0114,64370.18,High School,Nuclear,2,Others,Shared Room,PG,0,Stress
+S0115,44846.19,High School,Joint,0,Parents,Noisy,PG,0,Stress
+S0116,36214.7,Graduate,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0117,35622.83,High School,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0118,16552.14,High School,Nuclear,3,Parents,Shared Room,Home,0,Stress
+S0119,53246.65,High School,Nuclear,3,Parents,Quiet,PG,0,Normal
+S0120,38832.44,High School,Joint,2,Parents,Quiet,PG,0,Normal
+S0121,37292.8,High School,Joint,0,Others,Quiet,Hostel,1,Stress
+S0122,87896.61,Graduate,Nuclear,3,Parents,Shared Room,Hostel,0,Stress
+S0123,44481.29,Postgrad,Joint,2,Single Parent,Noisy,Home,1,Stress
+S0124,28723.13,Graduate,Joint,0,Single Parent,Noisy,Home,1,Stress
+S0125,33604.64,Graduate,Nuclear,1,Single Parent,Quiet,Hostel,0,Stress
+S0126,57226.69,High School,Joint,0,Others,Noisy,PG,0,Stress
+S0127,41699.06,Postgrad,Nuclear,0,Parents,Noisy,Home,0,Stress
+S0128,18425.83,Graduate,Nuclear,3,Others,Shared Room,PG,0,Stress
+S0129,53788.43,High School,Joint,2,Single Parent,Shared Room,PG,0,Stress
+S0130,29977.84,Graduate,Nuclear,2,Parents,Quiet,Home,0,Normal
+S0131,68099.47,High School,Joint,3,Parents,Noisy,Home,1,Stress
+S0132,56200.72,Graduate,Joint,0,Parents,Quiet,Home,1,Stress
+S0133,33290.17,Graduate,Nuclear,1,Parents,Noisy,Hostel,0,Stress
+S0134,59215.25,Postgrad,Joint,0,Parents,Quiet,Home,1,Stress
+S0135,41017.83,Graduate,Nuclear,0,Parents,Quiet,Hostel,1,Stress
+S0136,52791.61,Graduate,Nuclear,1,Parents,Quiet,Home,0,Normal
+S0137,47270.99,Postgrad,Nuclear,3,Parents,Noisy,Hostel,0,Stress
+S0138,27304.65,High School,Joint,2,Single Parent,Quiet,Hostel,0,Stress
+S0139,30346.75,High School,Nuclear,3,Parents,Noisy,Hostel,0,Stress
+S0140,55449.41,Graduate,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0141,34978.37,Graduate,Nuclear,0,Parents,Quiet,Home,1,Stress
+S0142,33945.27,Graduate,Joint,2,Parents,Noisy,Home,1,Stress
+S0143,25673.16,Postgrad,Nuclear,2,Single Parent,Quiet,Home,0,Stress
+S0144,46353.99,Graduate,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0145,70937.87,Graduate,Nuclear,1,Parents,Noisy,Hostel,0,Stress
+S0146,23987.01,Graduate,Nuclear,3,Parents,Quiet,Hostel,1,Stress
+S0147,40363.29,Postgrad,Joint,1,Parents,Quiet,Hostel,0,Normal
+S0148,61183.31,Postgrad,Nuclear,2,Single Parent,Quiet,PG,0,Stress
+S0149,38805.38,Postgrad,Nuclear,3,Parents,Shared Room,Hostel,0,Stress
+S0150,46785.58,High School,Joint,0,Parents,Noisy,Hostel,0,Stress
+S0151,24064.1,Graduate,Nuclear,3,Parents,Noisy,Hostel,0,Stress
+S0152,46424.61,High School,Joint,2,Parents,Noisy,Hostel,0,Stress
+S0153,37192.84,High School,Nuclear,0,Parents,Quiet,Home,0,Normal
+S0154,54785.95,High School,Joint,0,Parents,Quiet,Home,0,Normal
+S0155,57810.79,Graduate,Nuclear,1,Parents,Noisy,Hostel,0,Stress
+S0156,78843.45,Graduate,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0157,48694.5,High School,Joint,0,Parents,Quiet,Hostel,0,Normal
+S0158,44886.94,Graduate,Joint,3,Single Parent,Quiet,Hostel,0,Stress
+S0159,42915.76,Graduate,Joint,2,Others,Quiet,Hostel,1,Stress
+S0160,34702.51,Graduate,Nuclear,1,Parents,Shared Room,PG,0,Stress
+S0161,45077.26,High School,Joint,3,Single Parent,Quiet,Home,0,Stress
+S0162,35568.98,Graduate,Joint,0,Parents,Noisy,Home,0,Stress
+S0163,42526.91,Graduate,Nuclear,0,Parents,Quiet,Home,0,Normal
+S0164,59763.96,High School,Joint,1,Single Parent,Shared Room,Home,0,Stress
+S0165,24901.86,High School,Joint,2,Single Parent,Quiet,Home,1,Stress
+S0166,57098.18,Graduate,Nuclear,1,Others,Quiet,Home,0,Stress
+S0167,59756.73,Postgrad,Nuclear,3,Parents,Noisy,Home,0,Stress
+S0168,38228.97,Graduate,Nuclear,1,Parents,Noisy,Hostel,0,Stress
+S0169,8172.18,Graduate,Nuclear,0,Single Parent,Quiet,Home,0,Stress
+S0170,30882.67,Graduate,Nuclear,3,Parents,Quiet,Home,0,Normal
+S0171,59454.92,Graduate,Nuclear,0,Parents,Quiet,PG,0,Normal
+S0172,39656.98,High School,Nuclear,2,Parents,Quiet,Home,1,Stress
+S0173,25010.47,Graduate,Nuclear,0,Parents,Quiet,Home,0,Normal
+S0174,32428.38,Postgrad,Nuclear,0,Parents,Quiet,Hostel,0,Normal
+S0175,52609.3,Graduate,Joint,1,Parents,Quiet,Home,0,Normal
+S0176,48201.0,Postgrad,Joint,0,Single Parent,Quiet,Hostel,0,Stress
+S0177,36416.02,Graduate,Nuclear,3,Parents,Noisy,Hostel,0,Stress
+S0178,34497.63,High School,Joint,3,Parents,Shared Room,Hostel,1,Stress
+S0179,34123.63,Postgrad,Nuclear,2,Parents,Noisy,Home,0,Stress
+S0180,26163.85,High School,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0181,64230.64,Graduate,Nuclear,1,Parents,Quiet,Hostel,0,Normal
+S0182,35165.19,High School,Nuclear,2,Parents,Shared Room,PG,0,Stress
+S0183,58257.38,High School,Joint,3,Single Parent,Quiet,Hostel,0,Stress
+S0184,62819.74,Graduate,Joint,1,Parents,Quiet,Home,1,Stress
+S0185,54974.66,High School,Nuclear,3,Others,Noisy,Home,0,Stress
+S0186,33525.7,Graduate,Nuclear,3,Parents,Noisy,Hostel,0,Stress
+S0187,46055.95,Graduate,Nuclear,0,Parents,Noisy,Home,1,Stress
+S0188,39637.07,High School,Nuclear,3,Parents,Quiet,Hostel,0,Normal
+S0189,26444.47,High School,Nuclear,3,Parents,Quiet,Home,0,Normal
+S0190,44865.39,Graduate,Nuclear,1,Single Parent,Shared Room,Home,0,Stress
+S0191,22314.4,Graduate,Joint,1,Parents,Quiet,Home,0,Stress
+S0192,57815.19,Graduate,Joint,0,Parents,Noisy,Home,1,Stress
+S0193,33030.74,Graduate,Nuclear,3,Single Parent,Noisy,Hostel,1,Stress
+S0194,43017.39,Postgrad,Joint,0,Single Parent,Noisy,Hostel,0,Stress
+S0195,44249.32,Graduate,Nuclear,3,Single Parent,Quiet,Home,0,Stress
+S0196,36116.43,Graduate,Nuclear,2,Parents,Quiet,Home,0,Normal
+S0197,48800.41,Graduate,Nuclear,2,Single Parent,Noisy,PG,0,Stress
+S0198,32876.45,High School,Nuclear,0,Parents,Shared Room,PG,0,Stress
+S0199,53069.46,Graduate,Joint,0,Parents,Shared Room,PG,0,Stress
+S0200,19810.3,Graduate,Nuclear,0,Parents,Quiet,Home,0,Stress
+S0205,5000.0,High School,Nuclear,0,Parents,Excellent,With Family,0,Low
+,8.0,Bachelor's Degree,Joint,2,Parents,Excellent,With Family,2,Low
+S0250,700000.0,High School,Nuclear,1,Parents,Poor,With Family,7,Low
+,65000.0,Bachelor's Degree,Nuclear,1,Parents,Excellent,With Family,0,Low
+S0206,650000.0,High School,Nuclear,5,Parents,Excellent,With Family,0,Low
+S0207,500000.0,High School,Nuclear,2,Parents,Excellent,With Family,0,Low
+S0210,500000.0,High School,Nuclear,2,Parents,Excellent,With Family,0,Low
+S0211,500000.0,High School,Nuclear,2,Parents,Excellent,With Family,0,Low
+S0215,65000.0,High School,Nuclear,3,Parents,Excellent,With Family,0,Low

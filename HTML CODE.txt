@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Stress Detection System</title>
+    <style>
+        :root {
+            --primary-color: #5ca6d7;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d5dbdb;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #video {
+            width: 100%;
+            background-color: #ddd;
+            display: block;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .stress-low {
+            color: var(--success-color);
+        }
+
+        .stress-moderate {
+            color: var(--warning-color);
+        }
+
+        .stress-high {
+            color: var(--danger-color);
+        }
+
+        .suggestion-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .registration-form {
+            display: none;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: var(--light-color);
+            border: none;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .tab:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .success-message {
+            color: var(--success-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Stress Detection System</h1>
+            <p class="subtitle">Using Facial Emotion Recognition and Academic/Family Background Analysis</p>
+        </header>
+
+        <div class="card">
+            <h2 class="card-title">Student Analysis</h2>
+            
+            <div class="tab-container">
+                <button class="tab active" id="existing-tab">Existing Student</button>
+                <button class="tab" id="new-tab">Register New Student</button>
+            </div>
+
+            <div id="existing-student-form">
+                <div class="form-group">
+                    <label for="student_id">Student ID (Format: S0001-S0200)</label>
+                    <input type="text" id="student_id" placeholder="Enter student ID (e.g., S0001)" required>
+                </div>
+                <button id="analyze-btn">Analyze Stress Level</button>
+                <div id="error-message" class="error-message"></div>
+            </div>
+
+            <div id="new-student-form" class="registration-form">
+                <div class="two-columns">
+                    <div>
+                        <h3 class="card-title">Academic Information</h3>
+                        <div class="form-group">
+                            <label for="new_student_id">Student ID</label>
+                            <input type="text" id="new_student_id" placeholder="S0201" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gpa">GPA</label>
+                            <input type="number" id="gpa" step="0.01" min="0" max="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance">Attendance Percentage</label>
+                            <input type="number" id="attendance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignment_score">Assignment Score</label>
+                            <input type="number" id="assignment_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exam_performance">Exam Performance</label>
+                            <input type="number" id="exam_performance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project_involvement">Project Involvement</label>
+                            <input type="number" id="project_involvement" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="backlogs_count">Backlogs Count</label>
+                            <input type="number" id="backlogs_count" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="extracurricular_score">Extracurricular Score</label>
+                            <input type="number" id="extracurricular_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_warning">Academic Warnings</label>
+                            <input type="number" id="academic_warning" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_stress_level">Academic Stress Level</label>
+                            <select id="academic_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Family Background</h3>
+                        <div class="form-group">
+                            <label for="parental_income">Parental Income (USD)</label>
+                            <input type="number" id="parental_income" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parents_education_level">Parents Education Level</label>
+                            <select id="parents_education_level" required>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_type">Family Type</label>
+                            <select id="family_type" required>
+                                <option value="Nuclear">Nuclear</option>
+                                <option value="Joint">Joint</option>
+                                <option value="Single Parent">Single Parent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_of_siblings">Number of Siblings</label>
+                            <input type="number" id="no_of_siblings" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guardian_type">Guardian Type</label>
+                            <select id="guardian_type" required>
+                                <option value="Parents">Parents</option>
+                                <option value="Relatives">Relatives</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="home_study_environment">Home Study Environment</label>
+                            <select id="home_study_environment" required>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="residential_status">Residential Status</label>
+                            <select id="residential_status" required>
+                                <option value="With Family">With Family</option>
+                                <option value="Hostel">Hostel</option>
+                                <option value="Rented Apartment">Rented Apartment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="domestic_issues_reported">Domestic Issues Reported</label>
+                            <input type="number" id="domestic_issues_reported" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_stress_level">Family Stress Level</label>
+                            <select id="family_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="register-btn">Register Student</button>
+                <div id="registration-message" class="success-message"></div>
+            </div>
+        </div>
+
+        <div class="card" id="video-card" style="display: none;">
+            <h2 class="card-title">Emotion Detection</h2>
+            <div class="video-container">
+                <video id="video" width="640" height="480" autoplay muted></video>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div>
+            <p id="detection-message">Please look at the camera. Detecting emotions for 5 seconds...</p>
+        </div>
+
+        <div class="result-container" id="result-container">
+            <div class="result-card">
+                <h3 class="result-title">Stress Analysis Results</h3>
+                <div class="result-item">
+                    <span class="result-label">Student ID:</span>
+                    <span id="result-student-id"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Detected Emotion:</span>
+                    <span id="result-emotion"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Face Stress Level:</span>
+                    <span id="result-face-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Academic Stress Level:</span>
+                    <span id="result-academic-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Family Stress Level:</span>
+                    <span id="result-family-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Primary Stress Source:</span>
+                    <span id="result-stress-source"></span>
+                </div>
+                
+                <div class="suggestion-box">
+                    <h4>Recommendation</h4>
+                    <p id="result-suggestion"></p>
+                </div>
+            </div>
+            
+            <button id="new-analysis-btn" class="btn-secondary">Perform New Analysis</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const existingTab = document.getElementById('existing-tab');
+            const newTab = document.getElementById('new-tab');
+            const existingForm = document.getElementById('existing-student-form');
+            const newForm = document.getElementById('new-student-form');
+
+            existingTab.addEventListener('click', function() {
+                existingTab.classList.add('active');
+                newTab.classList.remove('active');
+                existingForm.style.display = 'block';
+                newForm.style.display = 'none';
+            });
+
+            newTab.addEventListener('click', function() {
+                newTab.classList.add('active');
+                existingTab.classList.remove('active');
+                existingForm.style.display = 'none';
+                newForm.style.display = 'block';
+            });
+
+            // Analyze button
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const studentIdInput = document.getElementById('student_id');
+            const errorMessage = document.getElementById('error-message');
+            const videoCard = document.getElementById('video-card');
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const detectionMessage = document.getElementById('detection-message');
+            const resultContainer = document.getElementById('result-container');
+
+            analyzeBtn.addEventListener('click', function() {
+                const studentId = studentIdInput.value.trim();
+                
+                if (!studentId.match(/^S\d{4}$/)) {
+                    errorMessage.textContent = 'Please enter a valid student ID (format: S0001)';
+                    return;
+                }
+                
+                errorMessage.textContent = '';
+                startEmotionDetection(studentId);
+            });
+
+            function startEmotionDetection(studentId) {
+                // Show video feed
+                videoCard.style.display = 'block';
+                
+                // Start camera
+                navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                    .then(function(stream) {
+                        video.srcObject = stream;
+                        video.play();
+                        
+                        // After 5 seconds, stop and analyze
+                        setTimeout(function() {
+                            stopEmotionDetection(studentId);
+                        }, 5000);
+                    })
+                    .catch(function(err) {
+                        console.error("An error occurred: " + err);
+                        errorMessage.textContent = "Could not access camera. Please ensure you've granted camera permissions.";
+                    });
+            }
+
+            function stopEmotionDetection(studentId) {
+                const stream = video.srcObject;
+                const tracks = stream.getTracks();
+                
+                tracks.forEach(function(track) {
+                    track.stop();
+                });
+                
+                video.srcObject = null;
+                
+                // Hide video card and show analyzing message
+                videoCard.style.display = 'none';
+                detectionMessage.textContent = "Analyzing emotions and stress levels...";
+                
+                // Send to server for analysis
+                fetch('/detect_stress', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `student_id=${encodeURIComponent(studentId)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        errorMessage.textContent = data.error;
+                        return;
+                    }
+                    
+                    // Display results
+                    showResults(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMessage.textContent = "An error occurred during analysis. Please try again.";
+                });
+            }
+
+            function showResults(data) {
+                document.getElementById('result-student-id').textContent = data.student_id;
+                document.getElementById('result-emotion').textContent = data.detected_emotion;
+                
+                const faceStressElement = document.getElementById('result-face-stress');
+                faceStressElement.textContent = data.face_stress_level;
+                faceStressElement.className = `stress-${data.face_stress_level.toLowerCase()}`;
+                
+                document.getElementById('result-academic-stress').textContent = 
+                    data.academic_stress || 'Not available';
+                document.getElementById('result-family-stress').textContent = 
+                    data.family_stress || 'Not available';
+                document.getElementById('result-stress-source').textContent = 
+                    data.stress_source.charAt(0).toUpperCase() + data.stress_source.slice(1);
+                document.getElementById('result-suggestion').textContent = data.suggestion;
+                
+                resultContainer.style.display = 'block';
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // New analysis button
+            document.getElementById('new-analysis-btn').addEventListener('click', function() {
+                resultContainer.style.display = 'none';
+                studentIdInput.value = '';
+                detectionMessage.textContent = 'Please look at the camera. Detecting emotions for 5 seconds...';
+            });
+
+            // Register new student
+            document.getElementById('register-btn').addEventListener('click', function() {
+                const formData = new FormData();
+                
+                // Academic data
+                formData.append('new_student_id', document.getElementById('new_student_id').value);
+                formData.append('gpa', document.getElementById('gpa').value);
+                formData.append('attendance', document.getElementById('attendance').value);
+                formData.append('assignment_score', document.getElementById('assignment_score').value);
+                formData.append('exam_performance', document.getElementById('exam_performance').value);
+                formData.append('project_involvement', document.getElementById('project_involvement').value);
+                formData.append('backlogs_count', document.getElementById('backlogs_count').value);
+                formData.append('extracurricular_score', document.getElementById('extracurricular_score').value);
+                formData.append('academic_warning', document.getElementById('academic_warning').value);
+                formData.append('academic_stress_level', document.getElementById('academic_stress_level').value);
+                
+                // Family data
+                formData.append('parental_income', document.getElementById('parental_income').value);
+                formData.append('parents_education_level', document.getElementById('parents_education_level').value);
+                formData.append('family_type', document.getElementById('family_type').value);
+                formData.append('no_of_siblings', document.getElementById('no_of_siblings').value);
+                formData.append('guardian_type', document.getElementById('guardian_type').value);
+                formData.append('home_study_environment', document.getElementById('home_study_environment').value);
+                formData.append('residential_status', document.getElementById('residential_status').value);
+                formData.append('domestic_issues_reported', document.getElementById('domestic_issues_reported').value);
+                formData.append('family_stress_level', document.getElementById('family_stress_level').value);
+                
+                fetch('/register_student', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageElement = document.getElementById('registration-message');
+                    if (data.error) {
+                        messageElement.textContent = data.error;
+                        messageElement.className = 'error-message';
+                    } else {
+                        messageElement.textContent = data.success;
+                        messageElement.className = 'success-message';
+                        
+                        // Clear form
+                        document.querySelectorAll('#new-student-form input, #new-student-form select').forEach(element => {
+                            if (element.id !== 'new_student_id') {
+                                element.value = '';
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('registration-message').textContent = 'An error occurred during registration.';
+                    document.getElementById('registration-message').className = 'error-message';
+                });
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Stress Detection System</title>
+    <style>
+        :root {
+            --primary-color: #5ca6d7;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d5dbdb;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #video {
+            width: 100%;
+            background-color: #ddd;
+            display: block;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .stress-low {
+            color: var(--success-color);
+        }
+
+        .stress-moderate {
+            color: var(--warning-color);
+        }
+
+        .stress-high {
+            color: var(--danger-color);
+        }
+
+        .suggestion-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .registration-form {
+            display: none;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: var(--light-color);
+            border: none;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .tab:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .success-message {
+            color: var(--success-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Stress Detection System</h1>
+            <p class="subtitle">Using Facial Emotion Recognition and Academic/Family Background Analysis</p>
+        </header>
+
+        <div class="card">
+            <h2 class="card-title">Student Analysis</h2>
+            
+            <div class="tab-container">
+                <button class="tab active" id="existing-tab">Existing Student</button>
+                <button class="tab" id="new-tab">Register New Student</button>
+            </div>
+
+            <div id="existing-student-form">
+                <div class="form-group">
+                    <label for="student_id">Student ID (Format: S0001-S0200)</label>
+                    <input type="text" id="student_id" placeholder="Enter student ID (e.g., S0001)" required>
+                </div>
+                <button id="analyze-btn">Analyze Stress Level</button>
+                <div id="error-message" class="error-message"></div>
+            </div>
+
+            <div id="new-student-form" class="registration-form">
+                <div class="two-columns">
+                    <div>
+                        <h3 class="card-title">Academic Information</h3>
+                        <div class="form-group">
+                            <label for="new_student_id">Student ID</label>
+                            <input type="text" id="new_student_id" placeholder="S0201" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gpa">GPA</label>
+                            <input type="number" id="gpa" step="0.01" min="0" max="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance">Attendance Percentage</label>
+                            <input type="number" id="attendance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignment_score">Assignment Score</label>
+                            <input type="number" id="assignment_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exam_performance">Exam Performance</label>
+                            <input type="number" id="exam_performance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project_involvement">Project Involvement</label>
+                            <input type="number" id="project_involvement" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="backlogs_count">Backlogs Count</label>
+                            <input type="number" id="backlogs_count" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="extracurricular_score">Extracurricular Score</label>
+                            <input type="number" id="extracurricular_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_warning">Academic Warnings</label>
+                            <input type="number" id="academic_warning" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_stress_level">Academic Stress Level</label>
+                            <select id="academic_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Family Background</h3>
+                        <div class="form-group">
+                            <label for="parental_income">Parental Income (USD)</label>
+                            <input type="number" id="parental_income" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parents_education_level">Parents Education Level</label>
+                            <select id="parents_education_level" required>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_type">Family Type</label>
+                            <select id="family_type" required>
+                                <option value="Nuclear">Nuclear</option>
+                                <option value="Joint">Joint</option>
+                                <option value="Single Parent">Single Parent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_of_siblings">Number of Siblings</label>
+                            <input type="number" id="no_of_siblings" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guardian_type">Guardian Type</label>
+                            <select id="guardian_type" required>
+                                <option value="Parents">Parents</option>
+                                <option value="Relatives">Relatives</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="home_study_environment">Home Study Environment</label>
+                            <select id="home_study_environment" required>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="residential_status">Residential Status</label>
+                            <select id="residential_status" required>
+                                <option value="With Family">With Family</option>
+                                <option value="Hostel">Hostel</option>
+                                <option value="Rented Apartment">Rented Apartment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="domestic_issues_reported">Domestic Issues Reported</label>
+                            <input type="number" id="domestic_issues_reported" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_stress_level">Family Stress Level</label>
+                            <select id="family_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="register-btn">Register Student</button>
+                <div id="registration-message" class="success-message"></div>
+            </div>
+        </div>
+
+        <div class="card" id="video-card" style="display: none;">
+            <h2 class="card-title">Emotion Detection</h2>
+            <div class="video-container">
+                <video id="video" width="640" height="480" autoplay muted></video>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div>
+            <p id="detection-message">Please look at the camera. Detecting emotions for 5 seconds...</p>
+        </div>
+
+        <div class="result-container" id="result-container">
+            <div class="result-card">
+                <h3 class="result-title">Stress Analysis Results</h3>
+                <div class="result-item">
+                    <span class="result-label">Student ID:</span>
+                    <span id="result-student-id"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Detected Emotion:</span>
+                    <span id="result-emotion"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Face Stress Level:</span>
+                    <span id="result-face-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Academic Stress Level:</span>
+                    <span id="result-academic-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Family Stress Level:</span>
+                    <span id="result-family-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Primary Stress Source:</span>
+                    <span id="result-stress-source"></span>
+                </div>
+                
+                <div class="suggestion-box">
+                    <h4>Recommendation</h4>
+                    <p id="result-suggestion"></p>
+                </div>
+            </div>
+            
+            <button id="new-analysis-btn" class="btn-secondary">Perform New Analysis</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const existingTab = document.getElementById('existing-tab');
+            const newTab = document.getElementById('new-tab');
+            const existingForm = document.getElementById('existing-student-form');
+            const newForm = document.getElementById('new-student-form');
+
+            existingTab.addEventListener('click', function() {
+                existingTab.classList.add('active');
+                newTab.classList.remove('active');
+                existingForm.style.display = 'block';
+                newForm.style.display = 'none';
+            });
+
+            newTab.addEventListener('click', function() {
+                newTab.classList.add('active');
+                existingTab.classList.remove('active');
+                existingForm.style.display = 'none';
+                newForm.style.display = 'block';
+            });
+
+            // Analyze button
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const studentIdInput = document.getElementById('student_id');
+            const errorMessage = document.getElementById('error-message');
+            const videoCard = document.getElementById('video-card');
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const detectionMessage = document.getElementById('detection-message');
+            const resultContainer = document.getElementById('result-container');
+
+            analyzeBtn.addEventListener('click', function() {
+                const studentId = studentIdInput.value.trim();
+                
+                if (!studentId.match(/^S\d{4}$/)) {
+                    errorMessage.textContent = 'Please enter a valid student ID (format: S0001)';
+                    return;
+                }
+                
+                errorMessage.textContent = '';
+                startEmotionDetection(studentId);
+            });
+
+            function startEmotionDetection(studentId) {
+                // Show video feed
+                videoCard.style.display = 'block';
+                
+                // Start camera
+                navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                    .then(function(stream) {
+                        video.srcObject = stream;
+                        video.play();
+                        
+                        // After 5 seconds, stop and analyze
+                        setTimeout(function() {
+                            stopEmotionDetection(studentId);
+                        }, 5000);
+                    })
+                    .catch(function(err) {
+                        console.error("An error occurred: " + err);
+                        errorMessage.textContent = "Could not access camera. Please ensure you've granted camera permissions.";
+                    });
+            }
+
+            function stopEmotionDetection(studentId) {
+                const stream = video.srcObject;
+                const tracks = stream.getTracks();
+                
+                tracks.forEach(function(track) {
+                    track.stop();
+                });
+                
+                video.srcObject = null;
+                
+                // Hide video card and show analyzing message
+                videoCard.style.display = 'none';
+                detectionMessage.textContent = "Analyzing emotions and stress levels...";
+                
+                // Send to server for analysis
+                fetch('/detect_stress', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `student_id=${encodeURIComponent(studentId)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        errorMessage.textContent = data.error;
+                        return;
+                    }
+                    
+                    // Display results
+                    showResults(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMessage.textContent = "An error occurred during analysis. Please try again.";
+                });
+            }
+
+            function showResults(data) {
+                document.getElementById('result-student-id').textContent = data.student_id;
+                document.getElementById('result-emotion').textContent = data.detected_emotion;
+                
+                const faceStressElement = document.getElementById('result-face-stress');
+                faceStressElement.textContent = data.face_stress_level;
+                faceStressElement.className = `stress-${data.face_stress_level.toLowerCase()}`;
+                
+                document.getElementById('result-academic-stress').textContent = 
+                    data.academic_stress || 'Not available';
+                document.getElementById('result-family-stress').textContent = 
+                    data.family_stress || 'Not available';
+                document.getElementById('result-stress-source').textContent = 
+                    data.stress_source.charAt(0).toUpperCase() + data.stress_source.slice(1);
+                document.getElementById('result-suggestion').textContent = data.suggestion;
+                
+                resultContainer.style.display = 'block';
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // New analysis button
+            document.getElementById('new-analysis-btn').addEventListener('click', function() {
+                resultContainer.style.display = 'none';
+                studentIdInput.value = '';
+                detectionMessage.textContent = 'Please look at the camera. Detecting emotions for 5 seconds...';
+            });
+
+            // Register new student
+            document.getElementById('register-btn').addEventListener('click', function() {
+                const formData = new FormData();
+                
+                // Academic data
+                formData.append('new_student_id', document.getElementById('new_student_id').value);
+                formData.append('gpa', document.getElementById('gpa').value);
+                formData.append('attendance', document.getElementById('attendance').value);
+                formData.append('assignment_score', document.getElementById('assignment_score').value);
+                formData.append('exam_performance', document.getElementById('exam_performance').value);
+                formData.append('project_involvement', document.getElementById('project_involvement').value);
+                formData.append('backlogs_count', document.getElementById('backlogs_count').value);
+                formData.append('extracurricular_score', document.getElementById('extracurricular_score').value);
+                formData.append('academic_warning', document.getElementById('academic_warning').value);
+                formData.append('academic_stress_level', document.getElementById('academic_stress_level').value);
+                
+                // Family data
+                formData.append('parental_income', document.getElementById('parental_income').value);
+                formData.append('parents_education_level', document.getElementById('parents_education_level').value);
+                formData.append('family_type', document.getElementById('family_type').value);
+                formData.append('no_of_siblings', document.getElementById('no_of_siblings').value);
+                formData.append('guardian_type', document.getElementById('guardian_type').value);
+                formData.append('home_study_environment', document.getElementById('home_study_environment').value);
+                formData.append('residential_status', document.getElementById('residential_status').value);
+                formData.append('domestic_issues_reported', document.getElementById('domestic_issues_reported').value);
+                formData.append('family_stress_level', document.getElementById('family_stress_level').value);
+                
+                fetch('/register_student', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageElement = document.getElementById('registration-message');
+                    if (data.error) {
+                        messageElement.textContent = data.error;
+                        messageElement.className = 'error-message';
+                    } else {
+                        messageElement.textContent = data.success;
+                        messageElement.className = 'success-message';
+                        
+                        // Clear form
+                        document.querySelectorAll('#new-student-form input, #new-student-form select').forEach(element => {
+                            if (element.id !== 'new_student_id') {
+                                element.value = '';
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('registration-message').textContent = 'An error occurred during registration.';
+                    document.getElementById('registration-message').className = 'error-message';
+                });
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Stress Detection System</title>
+    <style>
+        :root {
+            --primary-color: #5ca6d7;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d5dbdb;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #video {
+            width: 100%;
+            background-color: #ddd;
+            display: block;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .stress-low {
+            color: var(--success-color);
+        }
+
+        .stress-moderate {
+            color: var(--warning-color);
+        }
+
+        .stress-high {
+            color: var(--danger-color);
+        }
+
+        .suggestion-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .registration-form {
+            display: none;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: var(--light-color);
+            border: none;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .tab:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .success-message {
+            color: var(--success-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Stress Detection System</h1>
+            <p class="subtitle">Using Facial Emotion Recognition and Academic/Family Background Analysis</p>
+        </header>
+
+        <div class="card">
+            <h2 class="card-title">Student Analysis</h2>
+            
+            <div class="tab-container">
+                <button class="tab active" id="existing-tab">Existing Student</button>
+                <button class="tab" id="new-tab">Register New Student</button>
+            </div>
+
+            <div id="existing-student-form">
+                <div class="form-group">
+                    <label for="student_id">Student ID (Format: S0001-S0200)</label>
+                    <input type="text" id="student_id" placeholder="Enter student ID (e.g., S0001)" required>
+                </div>
+                <button id="analyze-btn">Analyze Stress Level</button>
+                <div id="error-message" class="error-message"></div>
+            </div>
+
+            <div id="new-student-form" class="registration-form">
+                <div class="two-columns">
+                    <div>
+                        <h3 class="card-title">Academic Information</h3>
+                        <div class="form-group">
+                            <label for="new_student_id">Student ID</label>
+                            <input type="text" id="new_student_id" placeholder="S0201" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gpa">GPA</label>
+                            <input type="number" id="gpa" step="0.01" min="0" max="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance">Attendance Percentage</label>
+                            <input type="number" id="attendance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignment_score">Assignment Score</label>
+                            <input type="number" id="assignment_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exam_performance">Exam Performance</label>
+                            <input type="number" id="exam_performance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project_involvement">Project Involvement</label>
+                            <input type="number" id="project_involvement" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="backlogs_count">Backlogs Count</label>
+                            <input type="number" id="backlogs_count" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="extracurricular_score">Extracurricular Score</label>
+                            <input type="number" id="extracurricular_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_warning">Academic Warnings</label>
+                            <input type="number" id="academic_warning" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_stress_level">Academic Stress Level</label>
+                            <select id="academic_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Family Background</h3>
+                        <div class="form-group">
+                            <label for="parental_income">Parental Income (USD)</label>
+                            <input type="number" id="parental_income" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parents_education_level">Parents Education Level</label>
+                            <select id="parents_education_level" required>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_type">Family Type</label>
+                            <select id="family_type" required>
+                                <option value="Nuclear">Nuclear</option>
+                                <option value="Joint">Joint</option>
+                                <option value="Single Parent">Single Parent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_of_siblings">Number of Siblings</label>
+                            <input type="number" id="no_of_siblings" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guardian_type">Guardian Type</label>
+                            <select id="guardian_type" required>
+                                <option value="Parents">Parents</option>
+                                <option value="Relatives">Relatives</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="home_study_environment">Home Study Environment</label>
+                            <select id="home_study_environment" required>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="residential_status">Residential Status</label>
+                            <select id="residential_status" required>
+                                <option value="With Family">With Family</option>
+                                <option value="Hostel">Hostel</option>
+                                <option value="Rented Apartment">Rented Apartment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="domestic_issues_reported">Domestic Issues Reported</label>
+                            <input type="number" id="domestic_issues_reported" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_stress_level">Family Stress Level</label>
+                            <select id="family_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="register-btn">Register Student</button>
+                <div id="registration-message" class="success-message"></div>
+            </div>
+        </div>
+
+        <div class="card" id="video-card" style="display: none;">
+            <h2 class="card-title">Emotion Detection</h2>
+            <div class="video-container">
+                <video id="video" width="640" height="480" autoplay muted></video>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div>
+            <p id="detection-message">Please look at the camera. Detecting emotions for 5 seconds...</p>
+        </div>
+
+        <div class="result-container" id="result-container">
+            <div class="result-card">
+                <h3 class="result-title">Stress Analysis Results</h3>
+                <div class="result-item">
+                    <span class="result-label">Student ID:</span>
+                    <span id="result-student-id"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Detected Emotion:</span>
+                    <span id="result-emotion"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Face Stress Level:</span>
+                    <span id="result-face-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Academic Stress Level:</span>
+                    <span id="result-academic-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Family Stress Level:</span>
+                    <span id="result-family-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Primary Stress Source:</span>
+                    <span id="result-stress-source"></span>
+                </div>
+                
+                <div class="suggestion-box">
+                    <h4>Recommendation</h4>
+                    <p id="result-suggestion"></p>
+                </div>
+            </div>
+            
+            <button id="new-analysis-btn" class="btn-secondary">Perform New Analysis</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const existingTab = document.getElementById('existing-tab');
+            const newTab = document.getElementById('new-tab');
+            const existingForm = document.getElementById('existing-student-form');
+            const newForm = document.getElementById('new-student-form');
+
+            existingTab.addEventListener('click', function() {
+                existingTab.classList.add('active');
+                newTab.classList.remove('active');
+                existingForm.style.display = 'block';
+                newForm.style.display = 'none';
+            });
+
+            newTab.addEventListener('click', function() {
+                newTab.classList.add('active');
+                existingTab.classList.remove('active');
+                existingForm.style.display = 'none';
+                newForm.style.display = 'block';
+            });
+
+            // Analyze button
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const studentIdInput = document.getElementById('student_id');
+            const errorMessage = document.getElementById('error-message');
+            const videoCard = document.getElementById('video-card');
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const detectionMessage = document.getElementById('detection-message');
+            const resultContainer = document.getElementById('result-container');
+
+            analyzeBtn.addEventListener('click', function() {
+                const studentId = studentIdInput.value.trim();
+                
+                if (!studentId.match(/^S\d{4}$/)) {
+                    errorMessage.textContent = 'Please enter a valid student ID (format: S0001)';
+                    return;
+                }
+                
+                errorMessage.textContent = '';
+                startEmotionDetection(studentId);
+            });
+
+            function startEmotionDetection(studentId) {
+                // Show video feed
+                videoCard.style.display = 'block';
+                
+                // Start camera
+                navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                    .then(function(stream) {
+                        video.srcObject = stream;
+                        video.play();
+                        
+                        // After 5 seconds, stop and analyze
+                        setTimeout(function() {
+                            stopEmotionDetection(studentId);
+                        }, 5000);
+                    })
+                    .catch(function(err) {
+                        console.error("An error occurred: " + err);
+                        errorMessage.textContent = "Could not access camera. Please ensure you've granted camera permissions.";
+                    });
+            }
+
+            function stopEmotionDetection(studentId) {
+                const stream = video.srcObject;
+                const tracks = stream.getTracks();
+                
+                tracks.forEach(function(track) {
+                    track.stop();
+                });
+                
+                video.srcObject = null;
+                
+                // Hide video card and show analyzing message
+                videoCard.style.display = 'none';
+                detectionMessage.textContent = "Analyzing emotions and stress levels...";
+                
+                // Send to server for analysis
+                fetch('/detect_stress', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `student_id=${encodeURIComponent(studentId)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        errorMessage.textContent = data.error;
+                        return;
+                    }
+                    
+                    // Display results
+                    showResults(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMessage.textContent = "An error occurred during analysis. Please try again.";
+                });
+            }
+
+            function showResults(data) {
+                document.getElementById('result-student-id').textContent = data.student_id;
+                document.getElementById('result-emotion').textContent = data.detected_emotion;
+                
+                const faceStressElement = document.getElementById('result-face-stress');
+                faceStressElement.textContent = data.face_stress_level;
+                faceStressElement.className = `stress-${data.face_stress_level.toLowerCase()}`;
+                
+                document.getElementById('result-academic-stress').textContent = 
+                    data.academic_stress || 'Not available';
+                document.getElementById('result-family-stress').textContent = 
+                    data.family_stress || 'Not available';
+                document.getElementById('result-stress-source').textContent = 
+                    data.stress_source.charAt(0).toUpperCase() + data.stress_source.slice(1);
+                document.getElementById('result-suggestion').textContent = data.suggestion;
+                
+                resultContainer.style.display = 'block';
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // New analysis button
+            document.getElementById('new-analysis-btn').addEventListener('click', function() {
+                resultContainer.style.display = 'none';
+                studentIdInput.value = '';
+                detectionMessage.textContent = 'Please look at the camera. Detecting emotions for 5 seconds...';
+            });
+
+            // Register new student
+            document.getElementById('register-btn').addEventListener('click', function() {
+                const formData = new FormData();
+                
+                // Academic data
+                formData.append('new_student_id', document.getElementById('new_student_id').value);
+                formData.append('gpa', document.getElementById('gpa').value);
+                formData.append('attendance', document.getElementById('attendance').value);
+                formData.append('assignment_score', document.getElementById('assignment_score').value);
+                formData.append('exam_performance', document.getElementById('exam_performance').value);
+                formData.append('project_involvement', document.getElementById('project_involvement').value);
+                formData.append('backlogs_count', document.getElementById('backlogs_count').value);
+                formData.append('extracurricular_score', document.getElementById('extracurricular_score').value);
+                formData.append('academic_warning', document.getElementById('academic_warning').value);
+                formData.append('academic_stress_level', document.getElementById('academic_stress_level').value);
+                
+                // Family data
+                formData.append('parental_income', document.getElementById('parental_income').value);
+                formData.append('parents_education_level', document.getElementById('parents_education_level').value);
+                formData.append('family_type', document.getElementById('family_type').value);
+                formData.append('no_of_siblings', document.getElementById('no_of_siblings').value);
+                formData.append('guardian_type', document.getElementById('guardian_type').value);
+                formData.append('home_study_environment', document.getElementById('home_study_environment').value);
+                formData.append('residential_status', document.getElementById('residential_status').value);
+                formData.append('domestic_issues_reported', document.getElementById('domestic_issues_reported').value);
+                formData.append('family_stress_level', document.getElementById('family_stress_level').value);
+                
+                fetch('/register_student', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageElement = document.getElementById('registration-message');
+                    if (data.error) {
+                        messageElement.textContent = data.error;
+                        messageElement.className = 'error-message';
+                    } else {
+                        messageElement.textContent = data.success;
+                        messageElement.className = 'success-message';
+                        
+                        // Clear form
+                        document.querySelectorAll('#new-student-form input, #new-student-form select').forEach(element => {
+                            if (element.id !== 'new_student_id') {
+                                element.value = '';
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('registration-message').textContent = 'An error occurred during registration.';
+                    document.getElementById('registration-message').className = 'error-message';
+                });
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Stress Detection System</title>
+    <style>
+        :root {
+            --primary-color: #5ca6d7;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d5dbdb;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #video {
+            width: 100%;
+            background-color: #ddd;
+            display: block;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .stress-low {
+            color: var(--success-color);
+        }
+
+        .stress-moderate {
+            color: var(--warning-color);
+        }
+
+        .stress-high {
+            color: var(--danger-color);
+        }
+
+        .suggestion-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .registration-form {
+            display: none;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: var(--light-color);
+            border: none;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .tab:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .success-message {
+            color: var(--success-color);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Stress Detection System</h1>
+            <p class="subtitle">Using Facial Emotion Recognition and Academic/Family Background Analysis</p>
+        </header>
+
+        <div class="card">
+            <h2 class="card-title">Student Analysis</h2>
+            
+            <div class="tab-container">
+                <button class="tab active" id="existing-tab">Existing Student</button>
+                <button class="tab" id="new-tab">Register New Student</button>
+            </div>
+
+            <div id="existing-student-form">
+                <div class="form-group">
+                    <label for="student_id">Student ID (Format: S0001-S0200)</label>
+                    <input type="text" id="student_id" placeholder="Enter student ID (e.g., S0001)" required>
+                </div>
+                <button id="analyze-btn">Analyze Stress Level</button>
+                <div id="error-message" class="error-message"></div>
+            </div>
+
+            <div id="new-student-form" class="registration-form">
+                <div class="two-columns">
+                    <div>
+                        <h3 class="card-title">Academic Information</h3>
+                        <div class="form-group">
+                            <label for="new_student_id">Student ID</label>
+                            <input type="text" id="new_student_id" placeholder="S0201" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gpa">GPA</label>
+                            <input type="number" id="gpa" step="0.01" min="0" max="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance">Attendance Percentage</label>
+                            <input type="number" id="attendance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignment_score">Assignment Score</label>
+                            <input type="number" id="assignment_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exam_performance">Exam Performance</label>
+                            <input type="number" id="exam_performance" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project_involvement">Project Involvement</label>
+                            <input type="number" id="project_involvement" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="backlogs_count">Backlogs Count</label>
+                            <input type="number" id="backlogs_count" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="extracurricular_score">Extracurricular Score</label>
+                            <input type="number" id="extracurricular_score" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_warning">Academic Warnings</label>
+                            <input type="number" id="academic_warning" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic_stress_level">Academic Stress Level</label>
+                            <select id="academic_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Family Background</h3>
+                        <div class="form-group">
+                            <label for="parental_income">Parental Income (USD)</label>
+                            <input type="number" id="parental_income" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parents_education_level">Parents Education Level</label>
+                            <select id="parents_education_level" required>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_type">Family Type</label>
+                            <select id="family_type" required>
+                                <option value="Nuclear">Nuclear</option>
+                                <option value="Joint">Joint</option>
+                                <option value="Single Parent">Single Parent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_of_siblings">Number of Siblings</label>
+                            <input type="number" id="no_of_siblings" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guardian_type">Guardian Type</label>
+                            <select id="guardian_type" required>
+                                <option value="Parents">Parents</option>
+                                <option value="Relatives">Relatives</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="home_study_environment">Home Study Environment</label>
+                            <select id="home_study_environment" required>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Average">Average</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="residential_status">Residential Status</label>
+                            <select id="residential_status" required>
+                                <option value="With Family">With Family</option>
+                                <option value="Hostel">Hostel</option>
+                                <option value="Rented Apartment">Rented Apartment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="domestic_issues_reported">Domestic Issues Reported</label>
+                            <input type="number" id="domestic_issues_reported" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="family_stress_level">Family Stress Level</label>
+                            <select id="family_stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="register-btn">Register Student</button>
+                <div id="registration-message" class="success-message"></div>
+            </div>
+        </div>
+
+        <div class="card" id="video-card" style="display: none;">
+            <h2 class="card-title">Emotion Detection</h2>
+            <div class="video-container">
+                <video id="video" width="640" height="480" autoplay muted></video>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div>
+            <p id="detection-message">Please look at the camera. Detecting emotions for 5 seconds...</p>
+        </div>
+
+        <div class="result-container" id="result-container">
+            <div class="result-card">
+                <h3 class="result-title">Stress Analysis Results</h3>
+                <div class="result-item">
+                    <span class="result-label">Student ID:</span>
+                    <span id="result-student-id"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Detected Emotion:</span>
+                    <span id="result-emotion"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Face Stress Level:</span>
+                    <span id="result-face-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Academic Stress Level:</span>
+                    <span id="result-academic-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Family Stress Level:</span>
+                    <span id="result-family-stress"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Primary Stress Source:</span>
+                    <span id="result-stress-source"></span>
+                </div>
+                
+                <div class="suggestion-box">
+                    <h4>Recommendation</h4>
+                    <p id="result-suggestion"></p>
+                </div>
+            </div>
+            
+            <button id="new-analysis-btn" class="btn-secondary">Perform New Analysis</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const existingTab = document.getElementById('existing-tab');
+            const newTab = document.getElementById('new-tab');
+            const existingForm = document.getElementById('existing-student-form');
+            const newForm = document.getElementById('new-student-form');
+
+            existingTab.addEventListener('click', function() {
+                existingTab.classList.add('active');
+                newTab.classList.remove('active');
+                existingForm.style.display = 'block';
+                newForm.style.display = 'none';
+            });
+
+            newTab.addEventListener('click', function() {
+                newTab.classList.add('active');
+                existingTab.classList.remove('active');
+                existingForm.style.display = 'none';
+                newForm.style.display = 'block';
+            });
+
+            // Analyze button
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const studentIdInput = document.getElementById('student_id');
+            const errorMessage = document.getElementById('error-message');
+            const videoCard = document.getElementById('video-card');
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const detectionMessage = document.getElementById('detection-message');
+            const resultContainer = document.getElementById('result-container');
+
+            analyzeBtn.addEventListener('click', function() {
+                const studentId = studentIdInput.value.trim();
+                
+                if (!studentId.match(/^S\d{4}$/)) {
+                    errorMessage.textContent = 'Please enter a valid student ID (format: S0001)';
+                    return;
+                }
+                
+                errorMessage.textContent = '';
+                startEmotionDetection(studentId);
+            });
+
+            function startEmotionDetection(studentId) {
+                // Show video feed
+                videoCard.style.display = 'block';
+                
+                // Start camera
+                navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                    .then(function(stream) {
+                        video.srcObject = stream;
+                        video.play();
+                        
+                        // After 5 seconds, stop and analyze
+                        setTimeout(function() {
+                            stopEmotionDetection(studentId);
+                        }, 5000);
+                    })
+                    .catch(function(err) {
+                        console.error("An error occurred: " + err);
+                        errorMessage.textContent = "Could not access camera. Please ensure you've granted camera permissions.";
+                    });
+            }
+
+            function stopEmotionDetection(studentId) {
+                const stream = video.srcObject;
+                const tracks = stream.getTracks();
+                
+                tracks.forEach(function(track) {
+                    track.stop();
+                });
+                
+                video.srcObject = null;
+                
+                // Hide video card and show analyzing message
+                videoCard.style.display = 'none';
+                detectionMessage.textContent = "Analyzing emotions and stress levels...";
+                
+                // Send to server for analysis
+                fetch('/detect_stress', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `student_id=${encodeURIComponent(studentId)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        errorMessage.textContent = data.error;
+                        return;
+                    }
+                    
+                    // Display results
+                    showResults(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMessage.textContent = "An error occurred during analysis. Please try again.";
+                });
+            }
+
+            function showResults(data) {
+                document.getElementById('result-student-id').textContent = data.student_id;
+                document.getElementById('result-emotion').textContent = data.detected_emotion;
+                
+                const faceStressElement = document.getElementById('result-face-stress');
+                faceStressElement.textContent = data.face_stress_level;
+                faceStressElement.className = `stress-${data.face_stress_level.toLowerCase()}`;
+                
+                document.getElementById('result-academic-stress').textContent = 
+                    data.academic_stress || 'Not available';
+                document.getElementById('result-family-stress').textContent = 
+                    data.family_stress || 'Not available';
+                document.getElementById('result-stress-source').textContent = 
+                    data.stress_source.charAt(0).toUpperCase() + data.stress_source.slice(1);
+                document.getElementById('result-suggestion').textContent = data.suggestion;
+                
+                resultContainer.style.display = 'block';
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // New analysis button
+            document.getElementById('new-analysis-btn').addEventListener('click', function() {
+                resultContainer.style.display = 'none';
+                studentIdInput.value = '';
+                detectionMessage.textContent = 'Please look at the camera. Detecting emotions for 5 seconds...';
+            });
+
+            // Register new student
+            document.getElementById('register-btn').addEventListener('click', function() {
+                const formData = new FormData();
+                
+                // Academic data
+                formData.append('new_student_id', document.getElementById('new_student_id').value);
+                formData.append('gpa', document.getElementById('gpa').value);
+                formData.append('attendance', document.getElementById('attendance').value);
+                formData.append('assignment_score', document.getElementById('assignment_score').value);
+                formData.append('exam_performance', document.getElementById('exam_performance').value);
+                formData.append('project_involvement', document.getElementById('project_involvement').value);
+                formData.append('backlogs_count', document.getElementById('backlogs_count').value);
+                formData.append('extracurricular_score', document.getElementById('extracurricular_score').value);
+                formData.append('academic_warning', document.getElementById('academic_warning').value);
+                formData.append('academic_stress_level', document.getElementById('academic_stress_level').value);
+                
+                // Family data
+                formData.append('parental_income', document.getElementById('parental_income').value);
+                formData.append('parents_education_level', document.getElementById('parents_education_level').value);
+                formData.append('family_type', document.getElementById('family_type').value);
+                formData.append('no_of_siblings', document.getElementById('no_of_siblings').value);
+                formData.append('guardian_type', document.getElementById('guardian_type').value);
+                formData.append('home_study_environment', document.getElementById('home_study_environment').value);
+                formData.append('residential_status', document.getElementById('residential_status').value);
+                formData.append('domestic_issues_reported', document.getElementById('domestic_issues_reported').value);
+                formData.append('family_stress_level', document.getElementById('family_stress_level').value);
+                
+                fetch('/register_student', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageElement = document.getElementById('registration-message');
+                    if (data.error) {
+                        messageElement.textContent = data.error;
+                        messageElement.className = 'error-message';
+                    } else {
+                        messageElement.textContent = data.success;
+                        messageElement.className = 'success-message';
+                        
+                        // Clear form
+                        document.querySelectorAll('#new-student-form input, #new-student-form select').forEach(element => {
+                            if (element.id !== 'new_student_id') {
+                                element.value = '';
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('registration-message').textContent = 'An error occurred during registration.';
+                    document.getElementById('registration-message').className = 'error-message';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
